@@ -40,13 +40,3 @@ models:
     # Applies to all files under models/example/
     example:
       +materialized: table
-seeds:
-  my_new_project:
-    city:
-      file: city.csv
-      header: true
-      quote: '"'
-    item:
-      file: item.csv
-      header: true
-      quote: '"'
