@@ -22,4 +22,4 @@ SELECT
 FROM 
     a 
 WHERE 
-    rank_1 <= 5; 
+    rank_1 <= 5
