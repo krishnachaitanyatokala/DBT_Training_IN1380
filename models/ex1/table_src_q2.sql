@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 SELECT *
-FROM {{ source('hockey_source', 'SCORING') }};
+FROM {{ source('hockey_source', 'SCORING') }}
