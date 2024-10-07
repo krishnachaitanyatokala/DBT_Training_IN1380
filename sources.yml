@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: hockey_source               
+    database: HOCKEYDB                
+    schema: HOCKEY                   
+
+    tables:
+      - name: ABBREV                  
+      - name: AWARDSCOACHES
+      - name: AWARDSMISC
+      - name: AWARDSPLAYERS
+      - name: COACHES
+      - name: COMBINEDSHOOTOUTS
+      - name: GOALIES
+      - name: GOALIESSC
+      - name: GOALIESSHOOTOUT
+      - name: HOF
+      - name: MASTER
+      - name: SCORING
+      - name: SCORINGSC
+      - name: SCORINGSHOOTOUT
+      - name: SCORINGSUP
+      - name: SERIESPOST
+      - name: TEAMS
+      - name: TEAMSHALF
+      - name: TEAMSPLITS
+      - name: TEAMSPOST
+      - name: TEAMSSC
+      - name: TEAMVSTEAM
