@@ -1,8 +1,6 @@
-{% snapshot products_snapshot_Timestamp %}
+{% snapshot products_Timestamp %}
     {{
         config(
-            target_schema='DBT_KRISHNACHAITANYATOKALA',
-            target_database='TRAINING',
             unique_key='product_id',
             strategy='timestamp',
             updated_at='end_date' 
