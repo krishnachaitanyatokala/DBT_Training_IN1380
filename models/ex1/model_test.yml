@@ -5,4 +5,4 @@ models:
     description: "This table contains transformed scoring data."
     tests:
       - dbt_utils.equal_rowcount:
-          compare_model: source('hockey_source', 'HOCKEY') 
+          compare_model: source('hockey_source', 'SCORING')
