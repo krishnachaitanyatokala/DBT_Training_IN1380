@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: top5_goals_2011_q1
+    description: "This table stores the aggregated statistics of hockey teams for the year 2011, including the number of goals scored per team."
+    columns:
+      - name: team_name
+        description: "The name of the hockey team."
+      - name: year
+        description: "The year of the match, specifically focusing on 2011."
+      - name: no_of_goals
+        description: "The total number of goals scored by the team in 2011."
+    tests:
+      - DUPLICATE_MACRO:
+          columns: ['Team_Name', 'no_of_goals']
