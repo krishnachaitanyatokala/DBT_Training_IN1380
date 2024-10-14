@@ -41,4 +41,5 @@ models:
     example:
       +materialized: table
 
-      
+vars:
+  team_filter: 'All Teams'    
