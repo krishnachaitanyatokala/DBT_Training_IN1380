@@ -1,27 +1,28 @@
 {% snapshot CDC_MASTER %}
-    {{
-        config(
-            unique_key='PLAYERID',
-            strategy='check',
-            check_cols=['FIRSTNAME', 'LASTNAME', 'BIRTHYEAR', 'BIRTHMON', 'BIRTHDAY', 'DEATHYEAR', 'DEATHMON', 'DEATHDAY'],
-            post-hook="""
-                UPDATE {{ this }}
-                SET 
-                    change_type_flag = 'D',
-                    LAST_UPDATED_AT = CURRENT_TIMESTAMP
-                WHERE PLAYERID NOT IN (
-                    SELECT PLAYERID FROM {{ ref('src_stg_MASTER') }}
-                );
+{{
+    config(
+        unique_key='PLAYERID',
+        strategy='check',
+        invalidate_hard_delete='true',
+        check_cols=['FIRSTNAME', 'LASTNAME', 'BIRTHYEAR', 'BIRTHMON', 'BIRTHDAY', 'DEATHYEAR', 'DEATHMON', 'DEATHDAY'],
+        post_hook=["
+            UPDATE {{ this }}
+            SET 
+                change_type_flag = 'D',
+                LAST_UPDATED_AT = CURRENT_TIMESTAMP
+            WHERE PLAYERID NOT IN (
+                SELECT PLAYERID FROM {{ ref('src_stg_MASTER') }}
+            );" ,
 
-                UPDATE {{ this }}
-                SET 
-                    change_type_flag = 'U',
-                    LAST_UPDATED_AT = CURRENT_TIMESTAMP
-                WHERE change_type_flag = 'I'
-                    AND DBT_VALID_TO IS NOT NULL
-            """
-        )
-    }}
+            "UPDATE {{ this }}
+            SET 
+                change_type_flag = 'U',
+                LAST_UPDATED_AT = CURRENT_TIMESTAMP
+            WHERE change_type_flag = 'I'
+                AND DBT_VALID_TO IS NOT NULL
+        "]
+    )
+}}
 
     SELECT
         src.PLAYERID,
