@@ -1,0 +1,57 @@
+version: 2
+
+snapshots:
+  - name: CDC_AWARDSPLAYERS
+    description: "Snapshot model for tracking changes in the AWARDSPLAYERS table using the 'check' strategy."
+    config:
+      unique_key:
+        - PLAYERID
+        - YEAR
+        - AWARD
+      strategy: check
+      check_cols:
+        - LGID
+        - NOTE
+        - POS
+      invalidate_hard_delete: true
+    columns:
+      - name: PLAYERID
+        description: "Unique identifier for the player in the AWARDSPLAYERS table."
+        tests:
+          - not_null
+
+      - name: AWARD
+        description: "Award won by the player."
+        tests:
+          - not_null
+
+      - name: YEAR
+        description: "Year in which the award was given."
+        tests:
+          - not_null
+
+      - name: LGID
+        description: "League ID associated with the award."
+        tests:
+          - not_null
+
+      - name: NOTE
+        description: "Additional notes or comments about the award."
+
+      - name: POS
+        description: "Position of the player when the award was given."
+
+      - name: CREATED_AT
+        description: "Timestamp of when the snapshot record was created."
+
+      - name: CREATED_BY
+        description: "Source or process name that created the snapshot record."
+
+      - name: VALID_TO
+        description: "Timestamp indicating when the record became invalid. NULL if currently valid."
+
+      - name: VALID_FROM
+        description: "Timestamp indicating when the record became valid."
+
+      - name: change_type_flag
+        description: "Flag to indicate the type of change: 'I' (Insert), 'U' (Update), 'D' (Delete)."

@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: src_stg_AWARDSPLAYERS
+    description: "Transforms and cleans data from the AWARDSPLAYERS source table."
+    columns:
+      - name: PLAYERID
+        description: "Unique identifier for the player."
+        tests:
+          - not_null
+          - unique
+
+      - name: AWARD
+        description: "Award received by the player."
+        tests:
+          - not_null
+
+      - name: YEAR
+        description: "Year the award was received."
+        tests:
+          - not_null
+
+      - name: LGID
+        description: "League identifier associated with the award."
+        tests:
+          - not_null
+
+      - name: NOTE
+        description: "Additional notes regarding the award."
+      
+      - name: POS
+        description: "Player position associated with the award."

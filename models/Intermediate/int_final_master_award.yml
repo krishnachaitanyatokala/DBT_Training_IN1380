@@ -1,0 +1,84 @@
+version: 2
+
+models:
+  - name: int_final_master_award 
+    description: "Joins CDC_MASTER and CDC_AWARDSPLAYERS to create a unified view of player details and their awards."
+    columns:
+      - name: player_id
+        description: "Unique identifier for the player."
+        tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: "First name of the player."
+
+      - name: last_name
+        description: "Last name of the player."
+
+      - name: award_year
+        description: "Year the award was received by the player."
+        tests:
+          - not_null
+
+      - name: award
+        description: "Award received by the player."
+        tests:
+          - not_null
+
+      - name: league_id
+        description: "League identifier associated with the award."
+
+sources: []
+
+models:
+  - name: CDC_MASTER
+    description: "Table containing master data of players, sourced and transformed from raw data."
+    columns:
+      - name: PLAYERID
+        description: "Primary key representing the player."
+
+      - name: FIRSTNAME
+        description: "First name of the player."
+
+      - name: LASTNAME
+        description: "Last name of the player."
+
+      - name: BIRTHYEAR
+        description: "Year of birth of the player."
+
+      - name: BIRTHMON
+        description: "Month of birth of the player."
+
+      - name: BIRTHDAY
+        description: "Day of birth of the player."
+
+      - name: DEATHYEAR
+        description: "Year of death of the player, if applicable."
+
+      - name: DEATHMON
+        description: "Month of death of the player, if applicable."
+
+      - name: DEATHDAY
+        description: "Day of death of the player, if applicable."
+
+  - name: CDC_AWARDSPLAYERS
+    description: "Table containing award details of players, sourced and transformed from raw data."
+    columns:
+      - name: PLAYERID
+        description: "Primary key representing the player."
+
+      - name: AWARD
+        description: "Name of the award received."
+
+      - name: YEAR
+        description: "Year in which the award was received."
+
+      - name: LGID
+        description: "League identifier associated with the award."
+
+      - name: NOTE
+        description: "Additional notes about the award."
+
+      - name: POS
+        description: "Position of the player when receiving the award."

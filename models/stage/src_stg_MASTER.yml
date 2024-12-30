@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: src_stg_MASTER
+    description: "This model processes hockey player data."
+    columns:
+      - name: playerid
+        description: "The unique identifier for a hockey player."
+        tests:
+          - unique
+          - not_null
+      - name: firstname
+        description: "The first name of the hockey player."
+      - name: lastname
+        description: "The last name of the hockey player."
+      - name: birthyear
+        description: "The birth year of the hockey player. Defaults to 0 if not available."
+      - name: birthmon
+        description: "The birth month of the hockey player. Defaults to 0 if not available."
+      - name: birthday
+        description: "The birth day of the hockey player. Defaults to 0 if not available."
+      - name: deathyear
+        description: "The year the hockey player passed away. Defaults to 0 if not available."
+      - name: deathmon
+        description: "The month the hockey player passed away. Defaults to 0 if not available."
+      - name: deathday
+        description: "The day the hockey player passed away. Defaults to 0 if not available."

@@ -1,0 +1,70 @@
+version: 2
+
+snapshots:
+  - name: CDC_MASTER
+    description: "Snapshot model for tracking changes in the MASTER table (player details) using the 'check' strategy."
+    config:
+      unique_key: PLAYERID
+      strategy: check
+      invalidate_hard_delete: true
+      check_cols:
+        - FIRSTNAME
+        - LASTNAME
+        - BIRTHYEAR
+        - BIRTHMON
+        - BIRTHDAY
+        - DEATHYEAR
+        - DEATHMON
+        - DEATHDAY
+    columns:
+      - name: PLAYERID
+        description: "Primary key for the player in the MASTER table."
+        tests:
+          - unique
+          - not_null
+
+      - name: FIRSTNAME
+        description: "First name of the player."
+        tests:
+          - not_null
+
+      - name: LASTNAME
+        description: "Last name of the player."
+        tests:
+          - not_null
+
+      - name: BIRTHYEAR
+        description: "Year of birth of the player."
+        tests:
+          - not_null
+
+      - name: BIRTHMON
+        description: "Month of birth of the player."
+        tests:
+          - not_null
+
+      - name: BIRTHDAY
+        description: "Day of birth of the player."
+        tests:
+          - not_null
+
+      - name: DEATHYEAR
+        description: "Year of death of the player, if applicable."
+
+      - name: DEATHMON
+        description: "Month of death of the player, if applicable."
+
+      - name: DEATHDAY
+        description: "Day of death of the player, if applicable."
+
+      - name: CREATED_AT
+        description: "Timestamp of when the snapshot was created."
+
+      - name: CREATED_BY
+        description: "Name of the source table or process that created the snapshot."
+
+      - name: LAST_UPDATED_AT
+        description: "Timestamp of when the record was last updated in the snapshot."
+
+      - name: change_type_flag
+        description: "Flag indicating the type of change: 'I' (Insert), 'U' (Update), 'D' (Delete)."
