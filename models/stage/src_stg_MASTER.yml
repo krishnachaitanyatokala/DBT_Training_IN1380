@@ -1,7 +1,8 @@
-version: 2
 
 models:
   - name: src_stg_MASTER
+    tests:
+          - test_source_schema_changes
     description: "This model processes hockey player data."
     columns:
       - name: playerid
